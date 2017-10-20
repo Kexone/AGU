@@ -1,0 +1,30 @@
+﻿  planeSweeping.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\xtree(1250): error C2100: illegal indirection
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\set(102): note: see reference to function template instantiation 'void std::_Tree<std::_Tset_traits<_Kty,_Pr,_Alloc,false>>::insert<_Iter>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Kty=myPoint,
+              _Pr=std::less<myPoint>,
+              _Alloc=std::allocator<myPoint>,
+              _Iter=int
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\set(102): note: see reference to function template instantiation 'void std::_Tree<std::_Tset_traits<_Kty,_Pr,_Alloc,false>>::insert<_Iter>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Kty=myPoint,
+              _Pr=std::less<myPoint>,
+              _Alloc=std::allocator<myPoint>,
+              _Iter=int
+          ]
+  c:\users\jakub\source\agu\agu\exercises\planesweeping.cpp(7): note: see reference to function template instantiation 'std::set<myPoint,std::less<_Kty>,std::allocator<_Kty>>::set<int>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Kty=myPoint,
+              _Iter=int
+          ]
+  c:\users\jakub\source\agu\agu\exercises\planesweeping.cpp(7): note: see reference to function template instantiation 'std::set<myPoint,std::less<_Kty>,std::allocator<_Kty>>::set<int>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Kty=myPoint,
+              _Iter=int
+          ]

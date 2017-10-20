@@ -13,12 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\exercises">
+      <UniqueIdentifier>{f408968b-78f9-4e65-8141-e13bdec59c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exercises">
+      <UniqueIdentifier>{a0ea8d92-9c33-48cf-82b8-e893f8c22f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\collection">
+      <UniqueIdentifier>{70307dd6-a36a-4ab4-b001-a42b80a19b60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="generator.cpp">
@@ -30,14 +36,17 @@
     <ClCompile Include="vizualize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SweepingPlane.cpp">
+    <ClCompile Include="objects\polygon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exercises\landingInterval.cpp">
+      <Filter>Source Files\exercises</Filter>
+    </ClCompile>
+    <ClCompile Include="exercises\planeSweeping.cpp">
+      <Filter>Source Files\exercises</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="polygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,11 +56,20 @@
     <ClInclude Include="vizualize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SweepingPlane.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exercises.h">
+    <ClInclude Include="objects\polygon.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exercises\exercises.h">
+      <Filter>Header Files\exercises</Filter>
+    </ClInclude>
+    <ClInclude Include="exercises\landingInterval.h">
+      <Filter>Header Files\exercises</Filter>
+    </ClInclude>
+    <ClInclude Include="exercises\planeSweeping.h">
+      <Filter>Header Files\exercises</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\point.h">
+      <Filter>Header Files\collection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "polygon.h"
+#include "objects/polygon.h"
 
 
 namespace cv {

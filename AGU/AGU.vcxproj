@@ -150,18 +150,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="exercises\landingInterval.cpp" />
+    <ClCompile Include="exercises\planeSweeping.cpp" />
     <ClCompile Include="generator.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="polygon.cpp" />
-    <ClCompile Include="SweepingPlane.cpp" />
+    <ClCompile Include="objects\polygon.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="vizualize.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="exercises.h" />
+    <ClInclude Include="collection\point.h" />
+    <ClInclude Include="exercises\exercises.h" />
+    <ClInclude Include="exercises\landingInterval.h" />
+    <ClInclude Include="exercises\planeSweeping.h" />
     <ClInclude Include="generator.h" />
-    <ClInclude Include="polygon.h" />
-    <ClInclude Include="SweepingPlane.h" />
+    <ClInclude Include="objects\polygon.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="vizualize.h" />
   </ItemGroup>

@@ -1,7 +1,9 @@
 #include <iostream>
-#include "SweepingPlane.h"
+#include "exercises/landingInterval.h"
+#include "exercises/planeSweeping.h"
 
 int main() {
-	SweepingPlane().run();
+	//LandingInterval().run();
+	PlaneSweeping().run();
 	return 0;
 }

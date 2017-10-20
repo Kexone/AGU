@@ -19,6 +19,12 @@ void Generator::generatePoints(std::vector<cv::Point2f> &points, size_t count) {
 	}
 }
 
+cv::Point2f Generator::generatePoint(size_t count)
+{
+	assert(count > 0);
+	return cv::Point2f(900 * dis(gen), 350 * dis(gen));
+}
+
 std::vector<cv::Point2f> Generator::generatePolygon(size_t count) {
 
 	// Draw points around circle
