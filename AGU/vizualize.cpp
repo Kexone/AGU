@@ -34,7 +34,7 @@ void Vizualize::drawPoint(cv::Mat& dst, cv::Point2f point)
 
 void Vizualize::drawArrowedLine(cv::Mat& dst, cv::Point2f from, cv::Point2f to)
 {
-	cv::arrowedLine(dst, from, to, cv::Scalar::all(1.0), 1);
+	cv::arrowedLine(dst, from, to, cv::Scalar::all(1.0), 4);
 }
 
 void Vizualize::drawLine(cv::Mat& dst, cv::Point2f from, cv::Point2f to)

@@ -3,7 +3,7 @@
 #include "exercises/planeSweeping.h"
 
 int main() {
-	//LandingInterval().run();
-	PlaneSweeping().run();
+	LandingInterval().run();
+	//PlaneSweeping().run();
 	return 0;
 }

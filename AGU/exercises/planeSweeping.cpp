@@ -4,7 +4,6 @@
 void PlaneSweeping::run()
 {
 	int countLines = 10;
-	std::set<myPoint> all = std::set<myPoint>(0,10);
 	cv::Mat img(400, 1000, CV_8UC3);
 	Vizualize viz = Vizualize();
 	for(int i = 0; i < countLines; i++)
@@ -16,8 +15,8 @@ generateAgainB:
 		{
 			goto generateAgainB;
 		}
-		myPoint p = myPoint{ pointB, "END" };
-		all.insert(myPoint{ pointB, "END" });
+		//const myPoint p = myPoint{ pointB, "END" };
+		//allPoints.insert(p);
 		viz.drawLine(img, pointA, pointB);
 	}
 	cv::imshow("Plane Sweeping", img);

@@ -16,6 +16,8 @@ private:
 	Vizualize viz;
 	void findPoints();
 	int locationOfPoint(cv::Point2f p1, cv::Point2f p2, cv::Point2f p3);
-	void locatePoint(cv::Mat &duplicate, std::vector<cv::Point2f> polyP, cv::Point2f firstP, cv::Point2f point);
-	void splitPoly(std::vector<cv::Point2f> &polyP, int from, int to);
+	void locatePoint(cv::Mat &duplicate, std::vector<cv::Point2f> &polyP, cv::Point2f firstP, cv::Point2f point);
+	void splitPoly(std::vector<cv::Point2f> &polyP, int from, int to, cv::Point2f firstP);
+	float sign(cv::Point2f p1, cv::Point2f p2, cv::Point2f p3);
+	bool isInTriangle(cv::Point2f pt, cv::Point2f v1, cv::Point2f v2, cv::Point2f v3);
 };

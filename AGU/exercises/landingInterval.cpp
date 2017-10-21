@@ -4,7 +4,14 @@
 #include <opencv2/highgui.hpp>
 #include <iostream>
 #include "../generator.h"
-
+void printPoints(std::vector<cv::Point2f> p)
+{
+	std::cout << "_Body:" << std::endl;
+	for (int i = 0; i <  p.size();i++)
+	{
+		std::cout << i << " " <<  p[i].x << " " << p[i].y << std::endl;
+	}
+}
 void LandingInterval::run()
 {
 	bool k;
@@ -13,7 +20,7 @@ void LandingInterval::run()
 	Polygon::center = cv::Point2f(image.cols / 2, image.rows / 2);
 	poly = Polygon();
 	poly.setPoints(Generator::generatePolygon(20));
-	Generator::generatePoints(points, 3);
+	Generator::generatePoints(points, 50);
 	viz = Vizualize();
 	viz.setPoly(poly);
 	viz.drawPoly(image);
@@ -28,13 +35,14 @@ void LandingInterval::findPoints()
 {
 	cv::Mat dup(image.clone());
 	cv::Mat duplicate(image.clone());
-	for(int i = 0; i < points.size(); i++)
+	for (int i = 0; i < points.size(); i++)
 	{
 		std::vector<cv::Point2f> polyPoints = poly.getPoints();
-		locatePoint(duplicate, polyPoints, polyPoints[0],points[i]);
+		printPoints(polyPoints);
+		locatePoint(duplicate, polyPoints, polyPoints[0], points[i]);
 		dup.copyTo(duplicate);
 	}
-	
+
 }
 
 int LandingInterval::locationOfPoint(cv::Point2f p1, cv::Point2f p2, cv::Point2f p3)
@@ -47,56 +55,55 @@ int LandingInterval::locationOfPoint(cv::Point2f p1, cv::Point2f p2, cv::Point2f
 	return (val > 0) ? 1 : 2;
 }
 
-void LandingInterval::locatePoint(cv::Mat &duplicate, std::vector<cv::Point2f> polyP, cv::Point2f firstP, cv::Point2f point)
+void LandingInterval::locatePoint(cv::Mat &duplicate, std::vector<cv::Point2f> &polyP, cv::Point2f firstP, cv::Point2f point)
 {
-	bool k;
-	int pLen = polyP.size() / 2;
-	viz.drawLine(duplicate, firstP, polyP[ pLen ]);
-	cv::waitKey(10);
-	cv::imshow("Computating", duplicate);
-	cv::waitKey(10);
-	int rlSide = locationOfPoint(firstP, polyP[ pLen ], point);
-	if(rlSide == 1) //left
+	int rlSide;
+	int pLen = polyP.size();
+	if (pLen < 3)
 	{
-		splitPoly(polyP, 0, pLen );
-	}
-	else if(rlSide == 2) //right
-	{
-		splitPoly(polyP, pLen , pLen * 2);
-	}
-	else //on line
-	{
-		
-	}
-	//std::cout << " SIZE:   " << pLen << std::endl;
-//	k = cv::waitKey(0);
-	if(pLen <= 2)
-	{
-		viz.drawLine(duplicate, firstP, polyP[pLen -1 ]);
-		viz.drawArrowedLine(duplicate, polyP[0], polyP[1]);
-		//rlSide = locationOfPoint(polyP[0], polyP[1], point);
-		rlSide = locationOfPoint(polyP[0], polyP[1],point);
-		
-		if(rlSide == 2)
+		viz.drawLine(duplicate, firstP, polyP[pLen / 2]);
+		rlSide = locationOfPoint(polyP[0], polyP[1], point);
+		if (isInTriangle(point, firstP, polyP[0], polyP[1]))
 		{
 			viz.drawPoint(image, point);
 		}
 		cv::waitKey(10);
 		cv::imshow("Computating", duplicate);
 		cv::imshow("Polygon", image);
-		bool k = cv::waitKey(0);
 		return;
 	}
-	locatePoint(duplicate, polyP, firstP, point);
+	int iHalf = pLen / 2;
+	viz.drawLine(duplicate, firstP, polyP[iHalf]);
+	cv::waitKey(10);
+	cv::imshow("Computating", duplicate);
+	rlSide = locationOfPoint(firstP, polyP[iHalf], point);
+
+	std::vector<cv::Point2f> newPoints;
+
+	if (rlSide == 1) //left
+	{
+		std::cout << ">>LEFT" << std::endl;
+		newPoints = std::vector<cv::Point2f>(polyP.begin(), polyP.begin() + iHalf + 1 );
+	}
+	else if (rlSide == 2) //right
+	{
+		std::cout << "<<RIGHT" << std::endl;
+		newPoints = std::vector<cv::Point2f>(polyP.begin() + iHalf, polyP.end());
+	}
+	locatePoint(duplicate, newPoints, firstP, point);
 }
 
-void LandingInterval::splitPoly(std::vector<cv::Point2f>& polyP, int from, int to)
+float LandingInterval::sign(cv::Point2f p1, cv::Point2f p2, cv::Point2f p3) {
+	return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+}
+
+bool LandingInterval::isInTriangle(cv::Point2f pt, cv::Point2f v1, cv::Point2f v2, cv::Point2f v3)
 {
-	std::vector<cv::Point2f> temp;
-	for (int i = from; i < to; i++)
-	{
-		temp.emplace_back(polyP[i]);
-	}
-	polyP = temp;
-	temp.clear();
+	bool b1, b2, b3;
+
+	b1 = sign(pt, v1, v2) < 0.0f;
+	b2 = sign(pt, v2, v3) < 0.0f;
+	b3 = sign(pt, v3, v1) < 0.0f;
+	std::cout << b1 << "==" << b2 << " && " << b2 << "==" << b3 << std::endl;
+	return ((b1 == b2) && (b2 == b3));
 }
